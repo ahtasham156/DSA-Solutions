@@ -29,7 +29,7 @@ fi
 # URL se automatically sab extract karo
 # Example: https://takeuforward.org/plus/dsa/problems/trie-implementation-and-operations?category=tries
 PROBLEM_SLUG=$(echo "$LINK" | grep -oE 'problems/[^?]+' | sed 's|problems/||')
-TOPIC_SLUG=$(echo "$LINK" | sed 's/&/\n/g' | grep '^category=' | sed 's|category=||' | head -1)
+TOPIC_SLUG=$(echo "$LINK" | tr '&?' '\n' | grep '^category=' | sed 's|category=||' | head -1)
 
 # Slug se readable name banao (hyphens -> spaces -> Title Case)
 PROBLEM_NAME=$(echo "$PROBLEM_SLUG" | tr '-' ' ' | awk '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)}1')
